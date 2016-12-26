@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+	<style>
+		.simple-alert {
+		padding: 20px;
+		border: solid 1px #ebebeb;
+	}
+    </style>
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="bootbox.js"></script>
+<script src="CusAlert.js"></script>
+
+
+
+
+</head>
+<body>
+
+
+
+
+<script type="text/javascript">	
+    $(document).ready(function () {	
+			
+			$("p").click(function(){
+				//bootbox.alert("This is the default alert!");								
+			});
+			
+			var default_alert = new SimpleAlert("warning","Hello World!");
+			
+			/*var default_btn = document.getElementById( "default" );
+			
+			default_btn.addEventListener( "click", function() {
+				var default_alert = new SimpleAlert("Hello World!");
+				console.log(default_alert);
+			 });*/
+  
+  
+  
+    });
+</script>
+	<div>
+		<p>Click me away!</p>
+	</div>
+	
+	
+	<div id="component">
+	  <button id="info">Show Info Message</button>
+	  <button id="success">Show Success Message</button>
+	  <button id="error">Show Warning Message</button>
+	</div>
+
+
+</body>
+</html>

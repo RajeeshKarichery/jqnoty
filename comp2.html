@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+	<style>
+		
+		
+		
+		.simple-alert {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px 5px 0;
+  padding: 5px 45px 5px 5px;
+}
+
+.simple-alert.error {
+  background-color: #f06464;
+  border: solid 1px #d91515;
+}
+
+.simple-alert.success {
+  background-color: lightgreen;
+  border: solid 1px #38e038;
+}
+
+.simple-alert.warning {
+  background-color: moccasin;
+  border: solid 1px #ffbf4f;
+}
+
+.simple-alert.default {
+  background-color: lightblue;
+  border: solid 1px #5fb3ce;
+}
+
+.simple-alert__content {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.simple-alert__dismiss {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 20px;
+  height: 20px;
+  background-image: url("../img/close.png");
+  font-size: 0;
+  text-indent: -9999px;
+}
+		
+    </style>
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="bootbox.js"></script>
+<script src="MyCusAlert.js"></script>
+<script src="JqData.js"></script>
+
+
+
+
+</head>
+<body>
+
+
+
+
+
+<h2></h2>
+
+<button id="simple-alert__button--error">Show Me An Error Alert</button>
+<section class="demo-section" id="alerts"></section>
+
+<script>
+
+
+	$(document).ready( function() {
+		$('h2').helloWorld({
+			text        : 'Hello Testing!',
+			color       : '#005dff',
+			fontStyle   : 'italic',
+			complete    : function(data) { 
+							alert( 'Done!'+data);
+						}
+		});
+	});
+
+  ( function() {
+    // cache vars
+    var btn_error = document.getElementById("simple-alert__button--error");
+
+    // show error
+    btn_error.addEventListener( "click", function(e) {
+	
+      e.preventDefault();
+      var sa = new SimpleAlert({
+        wrapper : document.getElementById("alerts"),
+        type : "error",
+        message : "Show me an error!",
+		
+		callback: function (result) {
+			console.log('This was logged in the callback: ' + result);
+		}
+		
+      });
+      sa.show();
+	  
+    });
+
+  })();
+</script>
+
+
+</body>
+</html>

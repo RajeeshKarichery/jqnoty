@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Notification Types</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="demonstration of some noty capabilities">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'PT Sans', Tahoma, Arial, serif;
+            line-height: 13px
+        }
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="buttons.css"/>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div id="customContainer"></div>
+	<button id="btn1" class="btn btn-default" >Alert </button>
+	
+	<button id="btn2" class="btn btn-default" >Confirm </button>
+	
+	<button id="btn3" class="btn btn-default" >Toast </button>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- noty -->
+<script type="text/javascript" src="jquery.noty.packaged.min.js"></script>
+
+
+<script type="text/javascript" src="MyNoty.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+	
+		$("#btn1").on("click",function(e){
+				/*var n;
+				noty({
+					  type:'warning',	
+					  theme  : 'relax',
+					  layout: 'center',		
+					  text: 'Do you want to continue? <input id="example" type="text">',
+					  buttons: [
+						{addClass: 'btn btn-primary', text: 'Ok', onClick: function($noty) {
+							console.log($noty.$bar.find('input#example').val());
+							
+							$noty.close();
+							n = noty({text: '<div class="activity-item"> <i class="glyphicon glyphicon-star-empty"></i> <div class="activity"> Data Saved  </div> </div>'   , type: 'success'});
+						  }
+						},
+						{addClass: 'btn btn-danger', text: 'Cancel', onClick: function($noty) {
+							$noty.close();
+							noty({text: 'You clicked "Cancel" button', type: 'error'});
+						  }
+						}
+					  ]
+			});*/
+			
+			SimpleAlert({
+				'text':'Hello this is testing '/*,
+				'target':e.target,
+				'callback': function (result) {
+					console.log('target callback: ' + result.target.id);
+					console.log('This was logged in the callback: ' + result.data);
+				}*/
+			}); 
+			
+		});
+		
+		$("#btn2").on("click",function(e){
+			console.log('Target....: ' + e.target.id);
+			SimpleConfirm({
+				//'target':e.target,
+				'callback': function (result) {
+					console.log('target callback2: ' + result.currentTarget);
+					//console.log('target callback2: ' + result.target.id);
+				}
+				/*,
+				
+				buttons:[
+					{addClass: 'btn btn-warning', text: 'Done', onClick: function($noty) {
+						$noty.close();											
+					  }
+					},
+					{addClass: 'btn btn-danger', text: 'Close', onClick: function($noty) {
+						$noty.close();						
+					  }
+					}
+				  ]*/
+				
+				
+			}); 		
+		});
+		
+		$("#btn3").on("click",function(e){			
+			SimpleToast({type:'success',text:'NOTY - a jquery notification library! Hello this is ok'}); 		
+		});
+	
+		
+		 /*var n = noty({
+            text        : "warning",
+            type        : "warning",
+            dismissQueue: false,
+            layout      : 'topCenter',
+            theme       : 'relax'
+        });*/	
+		/* setTimeout(function () {
+            $.noty.close(n.options.id);
+        }, 3000);
+	*/
+	
+		
+    });
+	
+	
+	 function generate(type) {
+        var n = noty({
+            text        : type,
+            type        : type,
+            dismissQueue: false,
+            layout      : 'topCenter',
+            theme       : 'relax'
+        });
+        console.log(type + ' - ' + n.options.id);
+        return n;
+    }
+	
+	
+
+</script>
+</body>
+</html>
