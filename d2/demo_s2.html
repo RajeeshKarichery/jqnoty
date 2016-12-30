@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Notification Types</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="demonstration of some noty capabilities">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../dist/bootstrap.min.css">
+	<script src="../dist/jquery.min.js"></script>
+	<script src="../dist/bootstrap.min.js"></script>	
+	<script src="../dist/jquery.dataTables.min.js"></script>	
+
+	
+	<script type="text/javascript" src="jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="dem_datatable.js"></script>
+	<script type="text/javascript" src="dem_popup.js"></script>
+    
+</head>
+<body>
+
+	<button id="btnModal" class="btn btn-default" >Modal </button>
+	
+	<!-- -->
+
+	<div id="container" style="display:none;">     
+			<div  style="display: none" id="send-div">	
+
+				<form id="frm2">
+						<div class="form-group">
+							<label for="sid">ID</label>
+							<input type="sid" class="form-control" id="sid" required>
+						 </div>
+						 <input type="submit" value="Submit" class="btn btn-default"></input>				
+				</form>
+				<div class="form-group">
+					 <label >Desc</label>
+					 <textarea id="desc" required="required"
+							   class="form-control" name="desc" ></textarea>
+				 </div>
+				 
+				<div class="form-group">
+					 <sntable></sntable>
+				</div>
+			</div>			
+	</div>
+
+<script type="text/javascript">
+   
+    var dtObj;
+    var popObj;
+	var _popUp;
+
+ 
+        $(document).ready(function (){		
+			
+			var _popUp =  my_popup_init({
+                            title:"Send ",
+							templateId:'send-div',
+                            //template: $("#send-div").html(),
+							//template: '<div class="form-group"><sntable></sntable></div>',
+                            buttons:{
+                                save:{
+                                    isShow:true,
+                                    type:'submit',
+                                    text:'Send',
+                                    addClass:'primary'
+                                }
+                            },
+                            callback:{
+                                onSubmitClick:function(e){
+                                    console.log(e.formJson);
+                                }
+                            }
+                        });						
+		
+			$('#btnModal').on('click',function(e) {	
+						
+					
+						dtObj.clearCheckBox();
+						//_popUp.setTemplateId('send-div');
+                        _popUp.show();
+                        //popObj.show();
+			
+			});
+          
+
+
+            /*popObj = my_popup_init({
+					 title:'Alert',
+					 template: '<div class="form-group"><sntable></sntable></div>',
+					 buttons:{
+						 save:{
+							 isShow:true,
+							 type:'submit',
+							 text:'save',
+							 addClass:'primary'
+						}
+				 },
+				 callback:{
+						 onCloseClick:function(e){
+							 console.log("closeClick");
+							 popObj.close();
+						 },
+						 onSubmitClick:function(e){
+							 console.log(e.formJson);
+						 }
+					}
+				}
+			);  */         
+
+			/*,	function(sender,popObject){
+					popObj = popObject;
+				}*/
+			
+            var colsDp = [{ "data": "field_label", "title": "Name" }]
+			my_table_init(
+						{id:"dtMobile",colRender:colsDp},
+						function(sender,dgObject){
+						dtObj = dgObject;
+						dtObj.setDp([{ "field_label": "messi" ,"field_name": "m_name" },{ "field_label": "ronaldo" ,"field_name": "n_name" }]);
+					});
+
+
+
+           
+
+
+
+
+
+
+        });
+    
+</script>
+
+
+</body>
+</html>
