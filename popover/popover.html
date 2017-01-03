@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Notification Types</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="demonstration of some noty capabilities">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../dist/bootstrap.min.css">
+	
+	
+	<style>
+	
+	<!--	.nav-tabs > li.rounded.active > a,
+	.nav-tabs > li.rounded.active > a:hover,
+	.nav-tabs > li.rounded.active > a:focus
+	 {
+		background-color:cadetblue;
+		font-weight:bolder;
+		border-top-left-radius:10px;
+		border-top-right-radius:10px;
+	   color:orange;
+	}
+	.nav-tabs > li.rounded > a
+	 {
+		background-color:cadetblue;
+		font-weight:bolder;
+		border-top-left-radius:10px;
+		border-top-right-radius:10px;
+	   color:white;
+	}-->
+	
+	
+	.nav-tabs > li.active > a,
+	.nav-tabs > li.active > a:hover,
+	.nav-tabs > li.active > a:focus
+	 {
+		background-color:cadetblue;
+		font-weight:bolder;
+		border-top-left-radius:7px;
+		border-top-right-radius:7px;
+	    color:orange;
+	}
+	.nav-tabs > li > a
+	 {
+		background-color:cadetblue;
+		font-weight:bolder;
+		border-top-left-radius:7px;
+		border-top-right-radius:7px;
+	    color:white;
+	}
+	
+		.tab-content{
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				border-radius: 0px 0px 5px 5px;
+				padding: 10px;
+		}
+	</style>
+	
+	
+	<script src="../dist/jquery.min.js"></script>
+	<script src="../dist/bootstrap.min.js"></script>	
+	
+	
+	
+    
+</head>
+<body>
+	
+	
+    
+    <button type="button" 
+		class="btn btn-default pop"
+		data-container="body"
+		data-toggle="popover" 				
+		>OK</button>
+		
+		<div class="container">  
+			  <ul class="nav nav-tabs">
+				<li id="s1_li" class="active"><a href="#home"> <span class="rk1"></span> Home</a></li>
+				<li id="s2_li"><a href="#menu1"><span class="rk2"></span>Menu 1</a></li>				
+			  </ul>
+
+			  <div class="tab-content">
+				<div id="home" class="tab-pane fade in active">
+				  <h3>HOME</h3>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+				<div id="menu1" class="tab-pane fade">
+				  <h3>Menu 1</h3>
+				  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+				
+			  </div>
+		</div>
+
+
+
+
+		
+		
+    <script type="text/javascript">   
+        $(document).ready(function (){
+				
+			/*$(".nav-tabs a").click(function(e){
+			
+				$(this).tab('show');
+			});*/
+			/*$('span').removeClass('.rk1');
+			$('span').removeClass('.rk2');
+			$('.rk2').addClass('glyphicon glyphicon-arrow-down');
+		*/
+		
+		
+		
+			//$('[data-toggle="popover"]').popover();
+			
+			/*$(".nav-tabs li a").on("mouseenter",function(e){			
+			
+					
+				
+			})*/
+			
+			/*$('.nav-tabs a').on('show.bs.tab', function(event){
+				var x = $(event.target).text();         // active tab
+				var y = $(event.relatedTarget).text();  // previous tab
+				alert(event.target.tabIndex);
+				
+			});*/
+			
+			$('.nav-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			
+				e.target // activated tab
+				alert( $(e.target).closest('li').index() + 1 );
+    
+				e.relatedTarget // previous tab
+			})
+			
+						
+			var tab1 =1;
+			var tab2 =2;	
+			var tab1Show =true;
+			var tab1ShowCont = 5;	
+			var tabSel=1;
+			var tabHov=1;	
+
+				$('.nav-tabs li').popover({	title:"MyTitle",
+								placement :"bottom" ,
+								trigger: "manual" ,
+								html: true,
+								animation:false ,
+								content:'<button class="btn btn-success btn-xs" type="button"> Messages <span class="badge">'+tab1ShowCont+'</span></button>'})
+				.on("mouseenter", function () {
+					var _this = this;
+					if(_this.id == 's1_li')
+						tabHov =1;
+					else	
+						tabHov =2;
+						
+					if(tab1 == 1 &&  tab1Show == true){						
+						$(this).popover("show");
+						$(".popover").on("mouseleave", function () {					
+							$(_this).popover('hide');
+						});
+					}
+					else{
+						
+					}	
+					
+				})
+				.on("mouseleave", function () {
+					var _this = this;
+					if(tab1 == 1 && tab1Show == true){						
+						setTimeout(function () {
+							if (!$(".popover:hover").length)
+								$(_this).popover("hide");						
+						}, 300);
+					}
+					else{
+						
+					}	
+				}); 			
+			
+			/*$('.nav-tabs >li:first-child').popover({	title:"MyTitle",
+								placement :"bottom" ,
+								trigger: "manual" ,
+								html: true,
+								animation:false ,
+								content:'<button class="btn btn-success btn-xs" type="button"> Messages <span class="badge">4</span></button>'})
+				.on("mouseenter", function () {
+					if(tab1 == 1){
+						var _this = this;
+						$(this).popover("show");
+						$(".popover").on("mouseleave", function () {					
+							$(_this).popover('hide');
+						});
+					}					
+				})
+				.on("mouseleave", function () {
+					if(tab1 == 1){
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length)
+								$(_this).popover("hide");						
+						}, 300);
+					}					
+				}); 
+
+
+			$('.nav-tabs >li:last-child').popover({	title:"MyTitle",
+								placement :"bottom" ,
+								trigger: "manual" ,
+								html: true,
+								animation:false ,
+								content:'<button class="btn btn-success btn-xs" type="button"> Messages <span class="badge">10</span></button>'})
+				.on("mouseenter", function () {
+					if(tab2 == 1){
+						var _this = this;
+						$(this).popover("show");
+						$(".popover").on("mouseleave", function () {					
+							$(_this).popover('hide');
+						});
+					}					
+				})
+				.on("mouseleave", function () {
+					if(tab2 == 1){
+						var _this = this;
+						setTimeout(function () {
+							if (!$(".popover:hover").length)
+								$(_this).popover("hide");						
+						}, 300);
+					}
+					
+				}); 	*/	
+				
+			
+			$(".pop").popover({	title:"MyTitle",
+								placement :"bottom" ,
+								trigger: "manual" ,
+								html: true,
+								animation:false ,
+								content:'<button class="btn btn-success btn-xs" type="button"> Messages <span class="badge">4</span></button>'})
+				.on("mouseenter", function () {
+					var _this = this;
+					$(this).popover("show");
+					$(".popover").on("mouseleave", function () {					
+						$(_this).popover('hide');
+					});
+				})
+				.on("mouseleave", function () {					
+					var _this = this;
+					setTimeout(function () {
+						if (!$(".popover:hover").length)
+							$(_this).popover("hide");						
+					}, 300);
+				});        
+		});//document close
+		
+	</script>
+
+
+</body>
+</html>
